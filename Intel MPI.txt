@@ -1,0 +1,45 @@
+Intel MPI配置
+主要文件"C:\Program Files (x86)\IntelSWTools\documentation_2017\en\mpi\get_started.htm"中Developer Guide 
+URL https://software.intel.com/en-us/get-started-with-mpi-for-windows
+
+Prerequisites
+Before you start using Intel® MPI Library make sure to complete the following steps:
+
+	1. 	Set the environment variables: from the installation directory <installdir>\mpi\<package number>\intel64\bin directory, run the mpivars.bat batch file:
+		> <installdir>\mpi\<package number>\intel64\bin\mpivars.bat
+		where <installdir> is the Intel MPI Library installation directory (by default, C:\Program Files (x86)\IntelSWTools).
+
+	2.	Install and run the Hydra services on the compute nodes. In the command prompt, enter:
+		> hydra_service -install
+		> hydra_service -start
+		
+	3.	Register your credentials, enter:
+		> mpiexec -register
+		
+For detailed system requirements, see the System Requirements section in Release Notes.
+
+配置VS project
+Configuring a Visual Studio* Project
+To configure a Visual Studio* project with Intel® MPI Library, do the following:
+
+	1.	In Microsoft* Visual Studio*, create a console application project, or open an existing one.
+
+	2.	Open the project properties and go to Configuration Properties > Debugging. Set the following parameters:
+		Command: $(I_MPI_ROOT)\intel64\bin\mpiexec.exe
+		Command arguments: -n <processes_number> "$(TargetPath)"
+
+	3.	In Configuration Properties > C/C++ or Fortran, as appropriate, set the following parameter:
+		Additional Include Directories: $(I_MPI_ROOT)\intel64\include
+
+	4.	In Configuration Properties > Linker, set the following parameter:
+		Additional Library Directories: $(I_MPI_ROOT)\intel64\lib\<configuration>
+		$注意，应当修改<configuration>为以下四种之一
+		You can set the following values for <configuration>:
+		debug: single-threaded debug library
+		release: single-threaded optimized library
+		debug_mt: multi-threaded debug library
+		release_mt: multi-threaded optimized library
+		
+	5.	In Configuration Properties > Linker > Input, set the following parameter:
+
+	Additional Dependencies: impi.lib
