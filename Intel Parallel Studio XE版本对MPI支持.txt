@@ -1,0 +1,21 @@
+目前intel的编译器整合成一个intel parallel studio，这套软件分不同的版本，其中cluster版本带有mpi库，而其它版本则不带，因此实现mpi并行程序编译有两种方式：
+1.利用intel parallel studio的编译器+msmpi来构建mpi并行程序
+2.直接安装cluster版本，它自带mpi库，由它来构建。但是cluster版本只支持64位系统。具体要求见版本说明。
+URL：https://blog.csdn.net/xenonhu/article/details/78206755
+
+
+A.说明：Intel® Parallel Studio XE 2013不包含Intel MPI套件
+URL:  https://software.intel.com/sites/default/files/article/251099/release-notes-studio-xe-2013-w.pdf
+1.2 Product Contents
+	Intel® Parallel Studio XE 2013 includes the following components:
+ 	Intel® C++ Composer XE 2013 - includes Intel® Integrated Performance Primitives
+		(Intel® IPP), Intel® Threading Building Blocks (Intel® TBB) and Intel® Math Kernel Library (Intel® MKL)
+	Intel® Visual Fortran Composer XE 2013 - includes Intel® Math Kernel Library (Intel®MKL)
+ 	Intel® Advisor XE 2013
+ 	Intel® Inspector XE 2013
+ 	Intel® VTune™ Amplifier XE 2013
+ 	Sample programs
+ 	On-disk documentation
+
+B.说明：Intel® Parallel Studio XE Cluster Edition 包含Intel MPI套件
+URL: file:///C:/Program%20Files%20(x86)/IntelSWTools/documentation_2017/en/ps2017/Release_Notes_2017_W_EN.pdf
