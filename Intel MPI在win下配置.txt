@@ -15,6 +15,8 @@ Before you start using Intel® MPI Library make sure to complete the following s
 		
 	3.	Register your credentials, enter:
 		> mpiexec -register
+		$$$注意,register时候，要使用正确的计算机名（本机ksfengjia）和登陆密码，无账户名和密码需注册。
+		
 		
 For detailed system requirements, see the System Requirements section in Release Notes.
 
@@ -33,7 +35,7 @@ To configure a Visual Studio* project with Intel® MPI Library, do the following
 
 	4.	In Configuration Properties > Linker, set the following parameter:
 		Additional Library Directories: $(I_MPI_ROOT)\intel64\lib\<configuration>
-		$注意，应当修改<configuration>为以下四种之一
+		$$$注意，应当修改<configuration>为以下四种之一
 		You can set the following values for <configuration>:
 		debug: single-threaded debug library
 		release: single-threaded optimized library
