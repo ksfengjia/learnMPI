@@ -1,0 +1,3 @@
+1.	win+r
+2.	输入devmgmt.msc
+3.  检查处理器

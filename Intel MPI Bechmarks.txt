@@ -1,2 +1,46 @@
 Intel MPI Bechmarks
 URL: https://software.intel.com/en-us/articles/intel-mpi-benchmarks/
+
+编译x64 MPI工程文件
+Building "x64" Executable Files 
+-------------------------------
+1) Check that the Include, Lib, and Path environment variables are set as follows:
+    %I_MPI_ROOT%\intel64\include
+    %I_MPI_ROOT%\intel64\lib
+    %I_MPI_ROOT%\mpi\intel64\bin
+The %I_MPI_ROOT% environment variable is set to the Intel(R) MPI Library 
+installation directory. The default installation directory is
+C:\Program Files (x86)\Intel\mpi\<version>, where <version> is the product version.
+2) Open the ".vcproj" or ".vcxproj" file for the component you would like to 
+   build. From the Visual Studio Project panel:
+   a) Change the "Solution Platforms" dialog box to "x64".
+   b) Change the "Solution Configurations" dialog box to "Release".
+   c) Check other settings as required, for example:
+    General > Project Defaults
+       - Set "Character Set" to "Use Multi-Byte Character Set"
+    C/C++ > General 
+       - Set "Additional Include Directories" to 
+           "$(I_MPI_ROOT)\intel64\include"
+       - Set "Warning Level" to "Level 1 (/W1)"
+    C/C++ > Preprocessor
+       - For the "Preprocessor definitions" within the Visual Studio 
+         projects, add the conditional compilation macros WIN_IMB and 
+         _CRT_SECURE_NO_DEPRECATE. Depending on the components you intend to 
+         use, add one or more of the following macros: 
+         MPI1, EXT, MPIIO, NBC, RMA.
+    Linker > Input
+       - Set "Additional Dependencies" to "$(I_MPI_ROOT)\intel64\lib\impi.lib". 
+         Make sure to add quotes.
+
+3) Use F7 or Build > Build Solution to create an executable.
+
+$$$ 编译过程中缺少变量
+修改IMB_declare.c
+210行新增代码 int IMB_internal_barrier; /* ksfengjia add the IMB_internal_barrier*/
+
+程序user guide
+https://software.intel.com/en-us/imb-user-guide-running-intel-mpi-benchmarks
+
+run mpi命令
+说明书代码：host$ mpirun -np <P> IMB-<component> [arguments]
+实际执行代码： mpiexec -np <P> IMB-EXT
