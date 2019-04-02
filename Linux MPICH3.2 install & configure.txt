@@ -1,0 +1,22 @@
+Linux MPICH3.2 install & configure
+简介: https://blog.csdn.net/sunmenggmail/article/details/46374899
+
+1.  下载相应版本 url: http://www.mpich.org/downloads/
+
+2.  安装
+    tar zxvf mpich-3.2.1.tar.gz
+    cd mpich-3.2
+    ./configure --prefix=/usr/local/mpich（ = 后面是文件安装路径）
+    make && make install
+    
+3.  配置
+    vi ~/.bashrc
+    在文件末尾补上下面两句话
+    export PATH=/home/tiger/software/mpich/bin:$PATH
+    export MANPATH=/home/tiger/software/mpich/man:$MANPATH
+    **保存退出后，再更新配置文件使其生效
+    source .bashrc
+    测试是否安装成功
+    mpirun -np 10 ./examples/cpi
+    
+4.  配置多服务器间无密码访问,查看简介
